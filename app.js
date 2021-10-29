@@ -77,6 +77,7 @@ const app = new ApolloServer({
             text:String!
             date:String
             Heading:String!
+            likes:Intger!
         }
 
         type Comments{
@@ -88,6 +89,7 @@ const app = new ApolloServer({
             title:String!
             text:String!
             Heading:String!
+            likes:Integer!
         }
 
         input commentsInput{
@@ -116,8 +118,10 @@ const app = new ApolloServer({
                     _id:"123456",
                     title:args.input.title,
                     text:args.input.text,
-                    Heading:args.input.Heading
+                    Heading:args.input.Heading,
+                    likes:args.input.likes,
                     date:new Date().toISOString()
+                    
                 }
                 blogs.push(blog)
                 return blog;
