@@ -78,6 +78,7 @@ const app = new ApolloServer({
             date:String
             Heading:String!
             likes:Int!
+            Author:String!
         }
 
         type Comments{
@@ -90,6 +91,7 @@ const app = new ApolloServer({
             text:String!
             Heading:String!
             likes:Int!
+            Author:String!
         }
 
         input commentsInput{
@@ -126,6 +128,7 @@ const app = new ApolloServer({
                     text:args.input.text,
                     Heading:args.input.Heading,
                     likes:args.input.likes,
+                    Author:args.input.Author,
                     date:new Date().toISOString()
                     
                 }
