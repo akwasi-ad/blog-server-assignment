@@ -77,11 +77,11 @@ const app = new ApolloServer({
             text:String!
             date:String
             Heading:String!
-            likes:Intger!
+            likes:Int!
         }
 
         type Comments{
-            id:String!
+            _id:String!
             text:String!
         }
 
@@ -89,7 +89,7 @@ const app = new ApolloServer({
             title:String!
             text:String!
             Heading:String!
-            likes:Integer!
+            likes:Int!
         }
 
         input commentsInput{
@@ -98,17 +98,23 @@ const app = new ApolloServer({
 
         type Query {
             blogs: [Blog!]!
+            comment:[Comments!]!
         }
 
         type Mutation {
             createBlog(input: blogInput!): Blog
+            createComment(input:commentsInput!):Comments
         }
+        
     `,
     resolvers: {
         Query: {
             blogs:()=>{
                 return blogs;
             },
+            comment:()=>{
+                return comment;
+            }
         },
         Mutation: {
             createBlog:(parent, args, context, info)=>{
@@ -125,6 +131,16 @@ const app = new ApolloServer({
                 }
                 blogs.push(blog)
                 return blog;
+            },
+            createComment:(parent, args, context, info)=>{
+
+                const com={
+                    _id:"4556",
+                    text:args.input.text
+
+                }
+                comment.push(com)
+                return com;
             }
         },
     }
